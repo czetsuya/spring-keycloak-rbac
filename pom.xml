@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.czetsuya</groupId>
 	<artifactId>spring-keycloak-rbac</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.3</version>
 	<name>spring-keycloak-rbac</name>
 	<description>Spring Boot 2.x with Keycloak 8.x RBAC</description>
 
