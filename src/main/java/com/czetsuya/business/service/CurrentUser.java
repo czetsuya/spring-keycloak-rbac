@@ -13,6 +13,6 @@ import lombok.Data;
 @Data
 public class CurrentUser {
 
-    public String username;
+    private String username;
     private List<String> roles;
 }
