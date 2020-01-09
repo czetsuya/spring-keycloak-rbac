@@ -24,6 +24,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -39,12 +40,19 @@ import lombok.EqualsAndHashCode;
 @Table(name = "iam_menu")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Menu extends BaseEntity {
+public class Menu extends BaseEntity implements Comparable<Menu> {
 
     private static final long serialVersionUID = -2112068280721667149L;
 
+    @ManyToOne
+    @JoinColumn(name = "parent_menu_id")
+    private Menu parentMenu;
+
     @Column(name = "label")
     private String label;
+
+    @Column(name = "icon")
+    private String icon;
 
     @Column(name = "sort_order")
     private int sortOrder;
@@ -56,4 +64,9 @@ public class Menu extends BaseEntity {
     @ElementCollection
     @CollectionTable(name = "role_menus", joinColumns = @JoinColumn(name = "menu_id"))
     private List<String> roles;
+
+    @Override
+    public int compareTo(Menu o) {
+        return sortOrder - o.getSortOrder();
+    }
 }

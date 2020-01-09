@@ -67,7 +67,7 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     public KeycloakRestTemplate keycloakRestTemplate() {
         return new KeycloakRestTemplate(keycloakClientRequestFactory);
     }
-
+    
     public SimpleAuthorityMapper grantedAuthority() {
         SimpleAuthorityMapper mapper = new SimpleAuthorityMapper();
         mapper.setConvertToUpperCase(true);
@@ -99,7 +99,7 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 
         super.configure(http);
         http.headers().frameOptions().sameOrigin();
-        
+
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry expressionInterceptUrlRegistry = http.cors() //
                 .and() //
                 .csrf().disable() //

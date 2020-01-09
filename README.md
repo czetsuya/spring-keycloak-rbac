@@ -11,7 +11,7 @@ This demo project is composed of a Spring Boot REST API project that serves a me
 Sadly, it is disabled by default. To enable realm, upload run Keycloak with the given parameter:
 
 ```
-standalone.bat -Dkeycloak.profile.feature.upload_scripts=enabled
+standalone.bat -Djboss.socket.binding.port-offset=1 -Dkeycloak.profile.feature.upload_scripts=enabled
 ```
 
 Here's the documentation: https://www.keycloak.org/docs/latest/server_installation/, look at the profiles section.
