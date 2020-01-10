@@ -1,0 +1,70 @@
+{
+  "realm" : "balambgarden",
+  "users" : [ {
+    "id" : "86f85165-47db-4bf0-a3c4-269eb9e6679e",
+    "createdTimestamp" : 1578269258723,
+    "username" : "jim",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Jim",
+    "lastName" : "Raynor",
+    "credentials" : [ {
+      "id" : "46378820-dd43-4504-bf23-ca9a1b417f7a",
+      "type" : "password",
+      "createdDate" : 1578269274546,
+      "secretData" : "{\"value\":\"YPvEB6tRCTSyXuZyAalO2dvIHhnf8DAd1vS+rnpzlW6BngxFyIEMKNaZyO1mh5HuGJ9crm6HjXAlHHDKVGVm3g==\",\"salt\":\"dWC049T59LOnHJtq46hiFg==\"}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "Supervisor", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "view-profile", "manage-account" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "758556b8-61e3-4adb-9924-6920afdf3197",
+    "createdTimestamp" : 1578269234367,
+    "username" : "sarah",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Sarah",
+    "lastName" : "Kerrigan",
+    "credentials" : [ {
+      "id" : "a80bba70-78bc-46a9-bbf0-de009e1f5819",
+      "type" : "password",
+      "createdDate" : 1578269245487,
+      "secretData" : "{\"value\":\"iHfATqD98LieIo9Adt8z6hgJguJbahAfiv8772L/K6yV1kjkKmUPmO9Z2eqcZnyt99ysy1FwuE7rDkceBMnufw==\",\"salt\":\"xmYA89b5Goqwl2SN6criDA==\"}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "Promoter", "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "view-profile", "manage-account" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "a710bda8-cb57-4585-bb15-c18f8b5ef163",
+    "createdTimestamp" : 1578396653040,
+    "username" : "service-account-sso-client",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "serviceAccountClientId" : "sso-client",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "sso-client" : [ "uma_protection" ],
+      "account" : [ "view-profile", "manage-account" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ]
+}
