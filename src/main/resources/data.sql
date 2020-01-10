@@ -1,11 +1,11 @@
 insert into iam_menu (id, parent_menu_id, label, sort_order, route) values (100, null, 'Trading', 1, null);
 insert into role_menus (menu_id, role) values (100, 'ROLE_TRADINGMANAGER');
 
-insert into iam_menu (id, parent_menu_id, label, sort_order, route) values (101, 100, 'Trading', 1, null);
+insert into iam_menu (id, parent_menu_id, label, sort_order, route) values (101, 100, 'Trading Region', 1, null);
 insert into role_menus (menu_id, role) values (101, 'ROLE_TRADINGMANAGER');
-insert into iam_menu (id, parent_menu_id, label, sort_order, route) values (103, 100, 'Trading', 3, null);
+insert into iam_menu (id, parent_menu_id, label, sort_order, route) values (103, 100, 'Trading Province', 3, null);
 insert into role_menus (menu_id, role) values (103, 'ROLE_TRADINGMANAGER');
-insert into iam_menu (id, parent_menu_id, label, sort_order, route) values (102, 100, 'Trading', 2, null);
+insert into iam_menu (id, parent_menu_id, label, sort_order, route) values (102, 100, 'Trading Branch', 2, null);
 insert into role_menus (menu_id, role) values (102, 'ROLE_TRADINGMANAGER');
 
 --

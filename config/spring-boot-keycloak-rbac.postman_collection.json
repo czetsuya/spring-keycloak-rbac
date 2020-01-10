@@ -1,0 +1,718 @@
+{
+	"info": {
+		"_postman_id": "b41b8c1e-55b3-4e09-b0cd-c57b5abd82e9",
+		"name": "spring-boot-keycloak-rbac",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "sarah",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81606899-040a-4cda-813d-3275ae195602",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var json = pm.response.json();",
+									"var token = json[\"access_token\"];",
+									"var refreshToken = json[\"refresh_token\"]",
+									"pm.environment.set(\"access_token\", token);",
+									"pm.environment.set(\"refresh_token\", refreshToken);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "sso-client",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "sarah",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "kerrigan",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "ce30da4e-08ce-4859-a2d7-53745c7b2818",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/auth/realms/balambgarden/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"realms",
+								"balambgarden",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						},
+						"description": "Request Keycloak and get auth token"
+					},
+					"response": []
+				},
+				{
+					"name": "hello",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6725187-eaa7-4a75-9d95-f2aa6be11558",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isAuthenticated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5cf03f5-e9bc-4956-be82-5d597f57718c",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/authenticated",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"authenticated"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isNotAuthenticated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5cf03f5-e9bc-4956-be82-5d597f57718c",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/authenticated",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"authenticated"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "promoters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0c778cd-b386-47f0-aaad-e0a8252966fd",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/promoters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"promoters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supervisors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09463820-e82f-43e6-8221-c5a330f90557",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/supervisors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"supervisors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get menu by role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09463820-e82f-43e6-8221-c5a330f90557",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/menus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"menus"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "jim",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81606899-040a-4cda-813d-3275ae195602",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var json = pm.response.json();",
+									"var token = json[\"access_token\"];",
+									"var refreshToken = json[\"refresh_token\"]",
+									"pm.environment.set(\"access_token\", token);",
+									"pm.environment.set(\"refresh_token\", refreshToken);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "sso-client",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "jim",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "raynor",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "ce30da4e-08ce-4859-a2d7-53745c7b2818",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/auth/realms/balambgarden/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"realms",
+								"balambgarden",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						},
+						"description": "Request Keycloak and get auth token"
+					},
+					"response": []
+				},
+				{
+					"name": "hello",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6725187-eaa7-4a75-9d95-f2aa6be11558",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isAuthenticated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5cf03f5-e9bc-4956-be82-5d597f57718c",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/authenticated",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"authenticated"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isNotAuthenticated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5cf03f5-e9bc-4956-be82-5d597f57718c",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/authenticated",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"authenticated"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "promoters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0c778cd-b386-47f0-aaad-e0a8252966fd",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/promoters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"promoters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supervisors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09463820-e82f-43e6-8221-c5a330f90557",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/accounts/supervisors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"accounts",
+								"supervisors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get menu by role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09463820-e82f-43e6-8221-c5a330f90557",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/iam/menus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"iam",
+								"menus"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
