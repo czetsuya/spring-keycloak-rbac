@@ -1,7 +1,3 @@
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
-**Help me build more open-source projects by becoming my sponsor.*
-
 # Spring Boot with Keycloak Role Based Access Control
 
 This demo project is composed of a Spring Boot REST API project that serves a menu list of a given user's role.
@@ -31,7 +27,3 @@ keycloak.configurationFile = classpath:keycloak.json
 Role=PROMOTER, sarah / kerrigan
 
 Role=SUPERVISOR, jim / raynor
-
-## Authors
-
- * **Edward P. Legaspi** - *Java Architect* - [czetsuya](https://github.com/czetsuya)
