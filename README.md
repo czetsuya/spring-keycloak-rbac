@@ -2,6 +2,8 @@
 
 This demo project is composed of a Spring Boot REST API project that serves a menu list of a given user's role.
 
+Blog: https://www.czetsuyatech.com/2020/01/role-based-aaccess-control-in-spring-with-keycloak.html
+
 ## Requirements:
 
 - Spring Boot 2.x
